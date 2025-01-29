@@ -1,0 +1,667 @@
+body, html {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url('Design\ sans\ titre\ 2.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-shadow: 2px 2px 4px #000000; /* Ombre de texte noire */
+}
+
+/* Pour les cases qui souvrent */
+
+.section-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.section-tab {
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.section-tab:hover {
+  transform: scale(1.1);
+}
+
+.section-content {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: white;
+  display: none; /* Cache le contenu par défaut */
+}
+
+/* Pour les cases qui émettent un texte*/
+
+.myCard {
+  color: #000000;
+  background-color: transparent;
+  width: 190px;
+  height: 254px;
+  perspective: 1000px;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+}
+
+.innerCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.myCard:hover .innerCard {
+  transform: rotateY(180deg);
+}
+
+.frontSide,
+.backSide {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 0 0.3em rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+}
+
+.frontSide,
+.frontSide::before {
+  background: linear-gradient(43deg, #003B36 0%, #2F5D50 46%, #00756C 100%);
+}
+
+.backSide,
+.backSide::before {
+  background-image: linear-gradient(160deg, #022B30 0%, #005753 100%);
+}
+
+.backSide {
+  transform: rotateY(180deg);
+}
+
+.frontSide::before,
+.backSide::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: '';
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  z-index: -1;
+  border-radius: 1em;
+  filter: blur(20px);
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.3;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around; /* Cela répartira vos cartes uniformément sur la ligne. */
+  flex-wrap: wrap; /* Cela permettra aux cartes de passer à la ligne suivante si l'espace est insuffisant. */
+}
+
+
+.flex-item {
+  margin-right: 20px; /* Espacement entre les éléments, ajustez selon les besoins */
+}
+
+/* Supprimer la marge du dernier élément pour éviter un débordement à droite */
+.flex-item:last-child {
+  margin-right: 0;
+}
+
+
+/* Cache les inputs pour garder l'UI propre */
+input[type="radio"] {
+  display: none;
+}
+
+/* Style des onglets */
+.tabs .tab {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.tabs .tab:hover {
+  transform: scale(1.1);
+}
+
+/* Masque tout le contenu par défaut */
+.content-section {
+  display: none;
+}
+
+/* Affiche le contenu lorsque son input radio est sélectionné */
+input[type="radio"]:checked + .content .content-section {
+  display: block;
+}
+
+/* Correction pour la structure */
+input#about:checked ~ .content #content-about,
+input#experience:checked ~ .content #content-experience,
+input#education:checked ~ .content #content-education,
+input#skills:checked ~ .content #content-skills {
+  display: block;
+}
+
+/* Bouton pour le cv*/
+.download-button {
+  position: relative;
+  border-width: 0;
+  color: white;
+  background-color: #01e056;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 1;
+ }
+ 
+ .download-button .docs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 4px;
+  z-index: 1;
+  background-color: #242a35;
+  border: solid 1px #e8e8e82d;
+  transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+ }
+ 
+ .download-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+ }
+ 
+ .download {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
+  margin: 0 auto;
+  z-index: -1;
+  border-radius: 4px;
+  transform: translateY(0%);
+  background-color: #01e056;
+  border: solid 1px #01e0572d;
+  transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+ }
+ 
+ .download-button:hover .download {
+  transform: translateY(100%)
+ }
+ 
+ .download svg polyline,.download svg line {
+  animation: docs 1s infinite;
+ }
+ 
+ @keyframes docs {
+  0% {
+   transform: translateY(0%);
+  }
+ 
+  50% {
+   transform: translateY(-15%);
+  }
+ 
+  100% {
+   transform: translateY(0%);
+  }
+ }
+
+/* Animation pour la photo de profil */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .profile-photo-container img {
+    animation: fadeIn 2s;
+  }
+  
+  /* Animation pour les logos */
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .reseaux img {
+    transition: transform 0.5s ease;
+  }
+  
+  .reseaux img:hover {
+    transform: rotate(20deg);
+  }
+
+
+header {
+  background: url('Design\ sans\ titre\ 2.png') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #111111; /* Fond légèrement plus clair que le fond principal pour distinguer les sections */
+  color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-photo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.reseaux {
+    border-radius: 90%;
+    width: 50px;
+    border: 4px solid white; /* Bordure pour faire ressortir la photo */
+
+}
+
+.profile-photo {
+  border-radius: 50%;
+  width: 150px; /* Ajustez selon la taille souhaitée */
+  border: 4px solid white; /* Bordure pour faire ressortir la photo */
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+main {
+    padding: 20px;
+    
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+
+
+
+p {
+    text-align: center;
+    color: white; /* Blanc pour le texte */
+    font-size:large;
+    
+    
+}
+
+h2 {
+  background: url('Design\ sans\ titre\ 2.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff; /* Blanc pour le texte */
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+
+
+.card {
+  width: 290px;
+  height: 64px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 20px;
+  position: relative;
+  border: 2px solid transparent;
+  transition: all 0.5s ease-in-out;
+}
+
+.card:focus-within {
+  background-color: rgba(17, 17, 17, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgb(27, 27, 27);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.card button {
+  font-size: 34px;
+  background-color: transparent;
+  width: 50px;
+  padding: 7px;
+  height: 50px;
+  border-radius: 100%;
+  transition: all 0.2s ease-in;
+  border: 0;
+  cursor: pointer;
+}
+
+.card button:focus {
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 50%;
+}
+
+footer {
+  background: url('Design\ sans\ titre\ 2.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  background-color: #111111; /* Fond légèrement plus clair que le fond principal pour distinguer les sections */
+  text-align: center;
+  padding: 20px;
+  position: relative; /* Adjust as needed for your layout */
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Adjust the space between icons */
+  padding: 20px 0;
+}
+
+.social-links img {
+  width: 50px; /* ou la taille que vous souhaitez */
+  height: auto; /* pour conserver les proportions de l'image */
+  transition: transform 0.3s ease; /* anime le transform */
+}
+
+.social-links img:hover {
+  transform: scale(1.1); /* agrandit l'icône de 10% lors du survol */
+}
+
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-info p {
+  margin: 5px 0; /* Adjust the space between text */
+}
+
+/* Pour les langues parlées */
+
+.languages-spoken-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments verticalement dans le conteneur */
+  gap: 20px; /* Espacement entre chaque langue */
+  margin: 20px; /* Marge autour du conteneur pour éviter que le contenu touche les bords de la page */
+}
+
+.language {
+  display: flex;
+  align-items: center; /* Alignement vertical des éléments */
+  gap: 15px; /* Espacement entre le drapeau et le texte */
+  justify-content: center; /* Centre les éléments horizontalement dans leur conteneur */
+  width: 100%; /* Utilise toute la largeur disponible */
+  max-width: 600px; /* Largeur maximale pour ne pas étirer le contenu sur de grands écrans */
+}
+
+.flag {
+  width: 40px; /* Largeur de l'image du drapeau */
+  height: auto; /* Hauteur automatique pour garder le ratio */
+}
+
+.language-name {
+  font-size: 16px; /* Taille de la police */
+  text-align: center; /* Centre le texte si besoin */
+}
+
+
+
+/* Style  e-commerce link image */
+.ecommerce-link-container {
+  display: flex; /* Utilise Flexbox pour le conteneur */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne suivante si nécessaire */
+  justify-content: center; /* Centre les éléments horizontalement */
+  align-items: center; /* Centre les éléments verticalement */
+  gap: 10px; /* Ajoute un peu d'espace entre les éléments */
+}
+
+
+.ecommerce-link-container img {
+  margin-top: 20px; /* Space above the image */
+  width: 100px; /* Adjust as per your requirement */
+  height: auto;
+  
+}
+
+.ecommerce-link-container img:hover {
+  transform: scale(1.1); /* agrandit l'icône de 10% lors du survol */
+}
+
+/* Pour la navigation*/
+nav {
+  position: fixed; /* Fixe la navigation en haut de la page */
+  top: 0;
+  left: 0;
+  width: 100%; /* Largeur complète */
+  background: rgba(0, 0, 0, 0.75); /* Fond semi-transparent noir */
+  z-index: 1000; /* S'assure que la barre de nav est au-dessus des autres éléments */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre douce pour un effet de profondeur */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centrer les éléments de la liste dans la barre de nav */
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 20px; /* Espace entre les éléments de la liste */
+}
+
+nav a {
+  display: inline-block;
+  padding: 15px 20px;
+  color: #ffffff; /* Couleur blanche pour les liens */
+  text-decoration: none;
+  font-weight: bold; /* Rend le texte un peu plus épais */
+  transition: color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+nav a:hover {
+  color: #00FF00; /* Couleur de survol des liens, vert fluorescent par exemple */
+}
+
+/* Pour s'assurer que le site s'addapte a tout les écran */
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: column; /* Les éléments de la liste sont disposés en colonne */
+  }
+
+  nav ul li {
+      margin: 10px 0; /* Espace vertical entre les éléments */
+  }
+}
+
+/*Bouton pour l'email*/
+.btn {
+  outline: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #40B3A2;
+  min-width: 200px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  box-sizing: border-box;
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: .95;
+}
+
+.btn .animation {
+  border-radius: 100%;
+  animation: ripple 0.6s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
+  }
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.detailElement {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.detailView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.detailContent {
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.closeDetail {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.cardImage {
+  width: 100%; /* ou une taille spécifique */
+  height: auto;
+  border-radius: 5px; /* pour les coins arrondis */
+}
+
+.innerCard img {
+  display: block; /* S'assure que l'image est affichée en bloc pour mieux contrôler son positionnement */
+  width: 100%; /* Ajuste la largeur de l'image à 100% de son conteneur pour une uniformité */
+  height: auto; /* Permet à la hauteur de s'ajuster automatiquement pour maintenir le ratio */
+  object-fit: cover; /* S'assure que l'image couvre l'espace disponible, coupant les excès si nécessaire */
+  border-radius: 5px; /* Adoucit les coins de l'image pour s'intégrer harmonieusement dans le design de la carte */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Ajoute une ombre légère sous l'image pour un effet de profondeur */
+  margin-bottom: 10px; /* Crée un espace entre l'image et le texte en dessous */
+}

@@ -1,0 +1,249 @@
+body, html {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff; /* Blanc pour le texte */
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: url('Design\ sans\ titre\ 2.png') no-repeat center center fixed;
+
+}
+
+
+
+/* Pourl'entête */
+
+header {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    padding: 10px 0; /* Un peu de padding vertical pour donner de l'espace */
+    text-align: center; /* Centre les éléments dans le header */
+}
+
+.profile-photo-container {
+    display: inline-block; /* Rend le div en ligne pour centrer l'image */
+    width: 100px; /* Ou une autre taille selon vos besoins */
+    height: 100px; /* Doit être égal à la largeur pour garder l'image carrée */
+    overflow: hidden; /* Cache tout débordement */
+    border-radius: 50%; /* Rend l'image circulaire */
+    line-height: 0; /* Supprime l'espace supplémentaire à l'intérieur du bloc */
+    border: 3px solid #fff; /* Ajoute une bordure pour mettre en valeur la photo */
+}
+
+.profile-photo {
+    width: 100%;
+    height: auto; /* Assure que l'image garde ses proportions */
+    vertical-align: middle; /* Alignement vertical pour éviter l'espace en dessous de l'image */
+}
+button {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 17px;
+  padding: 1em 2.7em;
+  font-weight: 500;
+  background: #1f2937;
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.6em;
+  cursor: pointer;
+}
+
+.gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 0.6em;
+  margin-top: -0.25em;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+.label {
+  position: relative;
+  top: -1px;
+}
+
+.transition {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 500ms;
+  background-color: rgba(16, 185, 129, 0.6);
+  border-radius: 9999px;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button:hover .transition {
+  width: 14em;
+  height: 14em;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+
+
+/* Pour le message de maintenance*/
+
+.coming-soon {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 50px;
+    border-radius: 10px;
+    margin-top: 100px;
+}
+
+.coming-soon h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.coming-soon p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.coming-soon a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.coming-soon a:hover {
+    text-decoration: underline;
+}
+
+/* Pour l'animation du log in */
+
+#Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+  
+  #rays {
+    z-index: 2;
+    position: relative;
+    bottom: -1.5em;
+    animation: rays 2s ease-in-out infinite;
+  }
+  
+  .form {
+    position: relative;
+    top: 5em;
+    padding: 4%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    border: 4px solid #fff;
+    background: linear-gradient(145deg, #0f0f0f, #003333, #0f0f0f);
+    box-shadow: 0px 0px 64px 0px #00ffbf inset, 0px 0px 16px #00ffbf;
+    backdrop-filter: blur(3.5px);
+    gap: 1em;
+    animation: float 2s ease-in-out infinite;
+}
+
+#login-lable {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 8px;
+    text-shadow: 0px 0px 16px #00ffbf;
+}
+
+.form-content {
+    height: 3em;
+    padding: 1px 8px;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 2px solid #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 1px 3px #00ffbf inset, 0px 4px 4px 0px #181a6040;
+    text-shadow: 0px 1px 4px #00ffbf;
+}
+
+.form-content:focus-visible {
+    outline: none;
+    text-decoration: none;
+    background: rgba(0, 255, 240, 0.52);
+    box-shadow: 0px 0px 1px 4px #00ffbf;
+}
+
+.form-content:hover {
+    background: rgba(0, 255, 240, 0.52);
+}
+
+::placeholder {
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 0.1rem;
+    text-shadow: 0px 1px 5px #333333;
+}
+
+.form button {
+    cursor: pointer;
+    height: 3.5rem;
+    padding: 0%;
+    color: #ffffff;
+    font-size: 1.5em;
+    letter-spacing: 0.3rem;
+    border: 2px solid #ffffff;
+    /* Dégradé pour le bouton avec les couleurs du site */
+    background: linear-gradient(144deg, #006633, #00cc44 50%, #00ffbf);
+}
+
+.form button:hover {
+    position: relative;
+    bottom: 4px;
+    /* Dégradé plus lumineux pour le survol */
+    background: linear-gradient(144deg, #007744, #00dd55 50%, #00ffcc);
+    box-shadow: 0px 0px 2px 2px #ffffff;
+}
+
+  
+  @keyframes float {
+    0% {
+      position: relative;
+    }
+  
+    50% {
+      top: 50px;
+    }
+  
+    100% {
+      position: relative;
+    }
+  }
+  
+  @keyframes rays {
+    0% {
+      opacity: 0.6;
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0.6;
+    }
+  }
+  
